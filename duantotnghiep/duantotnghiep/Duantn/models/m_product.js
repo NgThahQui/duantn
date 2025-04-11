@@ -8,7 +8,7 @@ const productSchema = new Schema({
     product_hot: { type: Number, default: false },
     product_new: { type: Number, default: false },
     sale: { type: Number, default: 0 },
-    status: { type: String, enum: ["available", "out_of_stock"], default: "available" },
+    status: { type: Number, default: 0 },
     description: { type: String },
     price: { type: Number, required: true }
 });
