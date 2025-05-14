@@ -1,0 +1,487 @@
+/* ==== Reset Cơ bản & Font ==== */
+:root {
+  --primary-color: #007bff;
+  --success-color: #28a745;
+  --warning-color: #ffc107;
+  --danger-color: #dc3545;
+  --light-color: #f8f9fa;
+  --dark-color: #343a40;
+  --text-color: #2f2f2f;
+  --border-color: #dee2e6;
+  --card-bg: #ffffff;
+  --card-shadow: 0 6px 18px rgba(0, 0, 0, 0.06);
+  --card-hover-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
+  --border-radius: 8px;
+}
+
+body {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; /* Giữ font bạn đã chọn */
+  background-color: #f4f6f9; /* Nền tổng thể nhẹ nhàng */
+  color: var(--text-color);
+  line-height: 1.6;
+}
+
+/* ==== Bố cục tổng thể và Head Title ==== */
+#content main {
+  padding: 24px;
+}
+
+.head-title {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  margin-bottom: 24px;
+  gap: 16px;
+}
+
+.head-title .left h1 {
+  font-size: 28px;
+  font-weight: 600;
+  margin-bottom: 8px;
+  color: var(--dark-color);
+}
+
+.breadcrumb {
+  display: flex;
+  align-items: center;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  font-size: 14px;
+}
+
+.breadcrumb li a {
+  color: var(--primary-color);
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+.breadcrumb li a:hover {
+  color: darken(var(--primary-color), 10%);
+}
+.breadcrumb li a.active {
+  color: var(--text-color);
+  font-weight: 500;
+  pointer-events: none;
+}
+
+.breadcrumb li .bx {
+  font-size: 18px;
+  margin: 0 8px;
+  color: #6c757d;
+}
+
+/* ==== Filter ==== */
+.right {
+  display: flex;
+  align-items: center;
+}
+
+.filter-icon-wrapper {
+  position: relative;
+  display: inline-block;
+}
+
+.filter-icon-wrapper i.bx-filter {
+  position: absolute;
+  top: 50%;
+  left: 12px;
+  transform: translateY(-50%);
+  font-size: 18px;
+  color: #555;
+  pointer-events: none; /* Để click xuyên qua icon */
+}
+
+.filter-select-icon {
+  padding: 10px 12px 10px 38px; /* Tăng padding trái cho icon */
+  border-radius: var(--border-radius);
+  border: 1px solid var(--border-color);
+  font-size: 14px;
+  background-color: var(--card-bg);
+  appearance: none; /* Tắt giao diện mặc định */
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  min-width: 200px;
+  cursor: pointer;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' fill='%236c757d' viewBox='0 0 16 16'%3E%3Cpath fill-rule='evenodd' d='M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 12px center;
+}
+.filter-select-icon:focus {
+  border-color: var(--primary-color);
+  box-shadow: 0 0 0 3px rgba(0, 123, 255, 0.2);
+  outline: none;
+}
+
+
+/* ==== Bố cục Card container ==== */
+.category-container {
+  display: flex;
+  gap: 30px; /* Giảm gap một chút */
+  margin-top: 20px;
+  align-items: flex-start;
+  flex-wrap: wrap;
+}
+
+/* ==== Card chung cho Form và Table ==== */
+.category-form-card,
+.category-table-card {
+  background: var(--card-bg);
+  padding: 24px;
+  border-radius: var(--border-radius);
+  box-shadow: var(--card-shadow);
+  transition: box-shadow 0.3s ease;
+}
+
+.category-form-card:hover,
+.category-table-card:hover {
+  box-shadow: var(--card-hover-shadow);
+}
+
+.category-form-card {
+  flex: 1;
+  min-width: 320px; /* Tăng min-width */
+  max-width: 450px; /* Thêm max-width để form không quá rộng */
+}
+
+.category-table-card {
+  flex: 2;
+  min-width: 400px;
+  overflow-x: auto; /* Cho phép cuộn ngang nếu bảng quá rộng */
+}
+
+.category-form-card h2,
+.category-table-card h2 {
+  font-size: 20px;
+  font-weight: 600;
+  margin-bottom: 20px;
+  color: var(--dark-color);
+}
+
+/* ==== FORM NHẬP ==== */
+.form-group {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 20px;
+}
+
+.form-group label {
+  font-weight: 500; /* Giảm độ đậm */
+  margin-bottom: 8px;
+  color: #495057; /* Màu label dịu hơn */
+  font-size: 14px;
+}
+
+.form-group input[type="text"],
+.form-group input[type="checkbox"] {
+  padding: 10px 14px;
+  border: 1px solid var(--border-color);
+  border-radius: var(--border-radius);
+  font-size: 14px;
+  transition: all 0.2s ease;
+  background-color: #fff;
+}
+.form-group input[type="text"]:focus {
+  border-color: var(--primary-color);
+  box-shadow: 0 0 0 3px rgba(0, 123, 255, 0.2); /* Shadow nhẹ hơn */
+  outline: none;
+}
+.form-group input[type="text"]:disabled {
+  background-color: #e9ecef;
+  cursor: not-allowed;
+}
+
+
+/* Switch trạng thái */
+.form-group.switch-wrapper {
+  display: flex;
+  flex-direction: row; /* Đảm bảo label và switch trên cùng 1 hàng */
+  align-items: center;
+  justify-content: flex-start; /* Căn lề trái cho label và switch */
+  gap: 16px;
+  margin-top: 12px;
+}
+
+.switch-label {
+  min-width: auto; /* Bỏ min-width cũ */
+  font-weight: 500;
+  color: #495057;
+  font-size: 14px;
+  margin-bottom: 0 !important; /* Ghi đè margin-bottom từ .form-group label */
+}
+
+.switch-control {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.switch {
+  position: relative;
+  display: inline-block;
+  width: 50px; /* Giữ nguyên */
+  height: 26px; /* Giữ nguyên */
+}
+
+.switch input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+.slider {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #ccc;
+  border-radius: 34px;
+  transition: 0.4s;
+}
+
+.slider:before {
+  position: absolute;
+  content: "";
+  height: 20px;
+  width: 20px;
+  left: 3px;
+  bottom: 3px;
+  background-color: white;
+  border-radius: 50%;
+  transition: 0.4s;
+}
+
+.switch input:checked + .slider {
+  background-color: var(--success-color);
+}
+
+.switch input:focus + .slider {
+  box-shadow: 0 0 1px var(--success-color);
+}
+
+.switch input:checked + .slider:before {
+  transform: translateX(24px);
+}
+
+.status-label {
+  min-width: 60px;
+  font-size: 14px;
+  color: var(--text-color);
+}
+
+/* ==== Button Group ==== */
+.button-group {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+  margin-top: 24px; /* Tăng margin top */
+}
+.form-buttons {
+  justify-content: flex-end; /* Căn lề phải cho nút trong form */
+}
+
+
+.btn {
+  padding: 10px 18px;
+  border: none;
+  border-radius: var(--border-radius);
+  font-size: 14px;
+  font-weight: 500; /* Giảm độ đậm */
+  color:  #fff;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  text-decoration: none; /* Cho Link component */
+  display: inline-flex; /* Để icon và text căn giữa */
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+}
+
+.btn:hover {
+  filter: brightness(0.9);
+  transform: translateY(-1px);
+}
+.btn:active {
+  transform: translateY(0);
+  filter: brightness(0.8);
+}
+
+.icon-btn .bx {
+  font-size: 18px; /* Kích thước icon */
+}
+.icon-btn .btn-text {
+  margin-left: 8px;
+}
+.icon-btn.no-text .btn-text { /* Dành cho nút chỉ có icon */
+  display: none;
+}
+.icon-btn.no-text .bx {
+  margin:0;
+}
+
+
+/* Button Colors */
+.btn.primary-btn { background-color: var(--primary-color); }
+.btn.secondary-btn { background-color: #6c757d; color: #fff; } /* Nút hủy, xám hơn */
+.btn.success-btn { background-color: var(--success-color); } /* Thêm mới, xanh lá */
+.btn.edit-btn { background-color: var(--warning-color); color: var(--dark-color); } /* Sửa, vàng */
+.btn.delete-btn { background-color: var(--danger-color); } /* Xóa, đỏ */
+
+
+/* ==== BẢNG DANH MỤC ==== */
+.table-responsive {
+  width: 100%;
+  overflow-x: auto; /* Luôn cho phép cuộn ngang khi cần */
+}
+
+.category-table {
+  width: 100%;
+  border-collapse: collapse;
+  /* background: var(--card-bg); bỏ vì đã có card wrapper */
+  /* border-radius: var(--border-radius); bỏ vì đã có card wrapper */
+  /* overflow: hidden; bỏ vì đã có card wrapper */
+  /* box-shadow: var(--card-shadow); bỏ vì đã có card wrapper */
+  font-size: 14px;
+}
+
+.category-table th,
+.category-table td {
+  padding: 12px 15px; /* Điều chỉnh padding */
+  border-bottom: 1px solid var(--border-color);
+  text-align: left; /* Căn lề trái cho dễ đọc */
+  vertical-align: middle;
+}
+
+.category-table th {
+  background-color: var(--light-color);
+  color: var(--dark-color);
+  font-weight: 600;
+  white-space: nowrap; /* Không xuống dòng tiêu đề cột */
+}
+
+.category-table tbody tr:hover {
+  background-color: #f1f3f5; /* Màu hover nhẹ hơn */
+}
+
+.category-table td:last-child, .category-table th:last-child {
+  text-align: center; /* Cột thao tác căn giữa */
+}
+.category-table td.actions-cell {
+  white-space: nowrap;
+  text-align: center;      /* Căn giữa theo chiều ngang */
+  vertical-align: middle;  /* Căn giữa theo chiều dọc */
+  padding: 8px;
+}
+
+.category-table td.actions-cell .btn {
+  margin-left: 6px;
+}
+.category-table td.actions-cell .btn:first-child {
+  margin-left: 0;
+}
+
+/* Status Badges */
+.status-badge {
+  padding: 5px 10px;
+  border-radius: 12px; /* Bo tròn hơn cho badge */
+  font-size: 12px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.status-badge.active {
+  color: var(--success-color);
+  background-color: rgba(40, 167, 69, 0.1); /* Nền nhạt hơn */
+}
+
+.status-badge.inactive {
+  color: var(--danger-color);
+  background-color: rgba(220, 53, 69, 0.1); /* Nền nhạt hơn */
+}
+
+
+/* ==== Empty State ==== */
+.empty-state {
+  text-align: center;
+  padding: 40px 20px;
+  color: #6c757d;
+}
+.empty-state .bx {
+  font-size: 48px;
+  margin-bottom: 16px;
+  color: #adb5bd;
+}
+.empty-state p {
+  font-size: 16px;
+  margin-bottom: 16px;
+}
+.empty-state .btn {
+  margin-top: 10px;
+}
+
+
+/* ==== Responsive (Mobile) ==== */
+@media (max-width: 992px) { /* Tăng breakpoint để form và table xếp chồng sớm hơn */
+  .category-container {
+    flex-direction: column;
+  }
+
+  .category-form-card,
+  .category-table-card {
+    width: 100%;
+    max-width: none; /* Bỏ max-width của form trên mobile */
+  }
+}
+
+@media (max-width: 768px) {
+  .head-title {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  .head-title .right {
+    width: 100%; /* Filter chiếm toàn bộ chiều rộng */
+    margin-top: 10px;
+  }
+  .filter-select-icon {
+    width: 100%;
+  }
+
+  .category-table th,
+  .category-table td {
+    padding: 10px 8px; /* Giảm padding trên mobile */
+    font-size: 13px;
+  }
+  .status-badge {
+    font-size: 11px;
+    padding: 4px 8px;
+  }
+  .btn {
+    font-size: 13px;
+    padding: 8px 12px;
+  }
+  .icon-btn .bx {
+    font-size: 16px;
+  }
+  .icon-btn .btn-text {
+    margin-left: 6px;
+  }
+
+  .category-table td.actions-cell {
+    min-width: 100px; /* Đảm bảo không gian cho nút */
+  }
+}
+
+@media (max-width: 480px) {
+    .form-buttons {
+        flex-direction: column; /* Nút trong form xếp chồng lên nhau */
+    }
+    .form-buttons .btn {
+        width: 100%; /* Nút chiếm full width */
+    }
+    .form-buttons .btn + .btn { /* Nút thứ 2 trở đi */
+        margin-top: 10px;
+    }
+}
