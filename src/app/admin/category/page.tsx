@@ -1,116 +1,122 @@
 'use client';
 
-import Nav from "../nav/nav"; // Giả định Nav component tồn tại
+import Nav from "../nav/nav";
 import React, { useState, useEffect } from "react";
 import Link from 'next/link';
 
-// Interface cho đối tượng danh mục
 interface Category {
-  id: string;
-  code: string;
+  _id: string;
   name: string;
   isActive: boolean;
 }
 
-// Dữ liệu mẫu ban đầu
-const initialCategories: Category[] = [
-  { id: '1', code: 'CAT001', name: 'Áo sơ mi', isActive: true },
-  { id: '2', code: 'CAT002', name: 'Quần Jean', isActive: true },
-  { id: '3', code: 'CAT003', name: 'Phụ kiện', isActive: false },
-];
-
 export default function CategoryAdminPage() {
-  const [categories, setCategories] = useState<Category[]>(initialCategories);
-  const [isEditing, setIsEditing] = useState<boolean>(false);
+  const [categories, setCategories] = useState<Category[]>([]);
+  const [isEditing, setIsEditing] = useState(false);
   const [currentCategory, setCurrentCategory] = useState<Category | null>(null);
-
-  // State cho form inputs
-  const [categoryCode, setCategoryCode] = useState('');
   const [categoryName, setCategoryName] = useState('');
   const [isActiveForm, setIsActiveForm] = useState(true);
-
-  // State cho filter
-  const [filterStatus, setFilterStatus] = useState<string>(''); // '', 'active', 'inactive'
+  const [filterStatus, setFilterStatus] = useState<string>('');
 
   useEffect(() => {
-    // Trong thực tế, bạn sẽ fetch categories từ API ở đây
-    // setCategories(fetchedCategories);
+    fetchCategories();
   }, []);
 
+  const fetchCategories = async () => {
+    try {
+      const res = await fetch('http://localhost:3000/api/category');
+      const data = await res.json();
+      setCategories(data);
+    } catch (error) {
+      console.error("Error fetching categories:", error);
+    }
+  };
+
   const resetForm = () => {
-    setCategoryCode('');
     setCategoryName('');
     setIsActiveForm(true);
     setIsEditing(false);
     setCurrentCategory(null);
   };
 
-  const handleAddCategory = () => {
-    if (!categoryName.trim() || !categoryCode.trim()) {
-      alert('Mã danh mục và Tên danh mục không được để trống!');
+  const handleAddCategory = async () => {
+    if (!categoryName.trim()) {
+      alert('Tên danh mục không được để trống!');
       return;
     }
-    // Kiểm tra trùng mã (ví dụ đơn giản)
-    if (categories.some(cat => cat.code === categoryCode.trim())) {
-        alert('Mã danh mục đã tồn tại!');
-        return;
-    }
 
-    const newCategory: Category = {
-      id: new Date().toISOString(), // ID tạm thời, nên được tạo bởi backend
-      code: categoryCode.trim(),
+    const newCategory = {
       name: categoryName.trim(),
       isActive: isActiveForm,
     };
-    setCategories([...categories, newCategory]);
-    alert('Thêm danh mục thành công!'); // Thay bằng toast notification
-    resetForm();
+
+    try {
+      const res = await fetch('http://localhost:3000/api/category', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(newCategory),
+      });
+
+      if (!res.ok) throw new Error('Thêm danh mục thất bại');
+
+      alert('Thêm danh mục thành công!');
+      resetForm();
+      fetchCategories();
+    } catch (error) {
+      console.error(error);
+      alert('Không thể thêm danh mục.');
+    }
   };
 
-  const handleUpdateCategory = () => {
-    if (!currentCategory || !categoryName.trim() || !categoryCode.trim()) {
-      alert('Mã danh mục và Tên danh mục không được để trống!');
-      return;
-    }
-    // Kiểm tra trùng mã (trừ category hiện tại)
-    if (categories.some(cat => cat.code === categoryCode.trim() && cat.id !== currentCategory.id)) {
-        alert('Mã danh mục đã tồn tại ở một danh mục khác!');
-        return;
-    }
+  const handleUpdateCategory = async () => {
+  if (!currentCategory) return;
 
-    setCategories(
-      categories.map((cat) =>
-        cat.id === currentCategory.id
-          ? { ...cat, code: categoryCode.trim(), name: categoryName.trim(), isActive: isActiveForm }
-          : cat
-      )
-    );
-    alert('Cập nhật danh mục thành công!'); // Thay bằng toast notification
-    resetForm();
+  console.log(currentCategory);
+  const updatedCategory = {
+    name: categoryName.trim(),
+    isActive: isActiveForm,
   };
 
-  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+  console.log(updatedCategory);
+
+  try {
+    const res = await fetch(`http://localhost:3000/api/category/${currentCategory._id}`, {
+      method: 'PUT',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(updatedCategory),
+    });
+
+    if (!res.ok) throw new Error('Cập nhật thất bại');
+
+    alert('Cập nhật danh mục thành công!');
+    resetForm();
+    fetchCategories();
+  } catch (error) {
+    console.error(error);
+    alert('Không thể cập nhật danh mục.');
+  }
+};
+
+
+  const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    if (isEditing) {
-      handleUpdateCategory();
-    } else {
-      handleAddCategory();
-    }
+    isEditing ? handleUpdateCategory() : handleAddCategory();
   };
 
-  const handleEdit = (category: Category) => {
-    setIsEditing(true);
-    setCurrentCategory(category);
-    setCategoryCode(category.code);
-    setCategoryName(category.name);
-    setIsActiveForm(category.isActive);
-    window.scrollTo({ top: 0, behavior: 'smooth' }); // Cuộn lên đầu trang để thấy form
-  };
+ const handleEdit = (category: Category) => {
+  console.log("Chỉnh sửa danh mục:", category); // kiểm tra xem có id không
+  setIsEditing(true);
+  setCurrentCategory(category);
+  setCategoryName(category.name);
+  setIsActiveForm(category.isActive);
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+};
+
 
   const filteredCategories = categories.filter(category => {
     if (filterStatus === 'active') return category.isActive;
     if (filterStatus === 'inactive') return !category.isActive;
-    return true; // 'Tất cả'
+    return true;
   });
 
   return (
@@ -147,18 +153,6 @@ export default function CategoryAdminPage() {
             <div className="category-form-card">
               <h2>{isEditing ? 'Chỉnh sửa Danh mục' : 'Thêm Danh mục mới'}</h2>
               <form onSubmit={handleSubmit}>
-                <div className="form-group">
-                  <label htmlFor="categoryCode">Mã danh mục:</label>
-                  <input
-                    type="text"
-                    id="categoryCode"
-                    placeholder="VD: CAT001"
-                    value={categoryCode}
-                    onChange={(e) => setCategoryCode(e.target.value)}
-                    disabled={isEditing} // Không cho sửa mã khi editing, hoặc tuỳ theo logic của bạn
-                    required
-                  />
-                </div>
                 <div className="form-group">
                   <label htmlFor="categoryName">Tên danh mục:</label>
                   <input
@@ -215,7 +209,6 @@ export default function CategoryAdminPage() {
                     <thead>
                       <tr>
                         <th>STT</th>
-                        <th>Mã danh mục</th>
                         <th>Tên danh mục</th>
                         <th>Trạng thái</th>
                         <th>Thao tác</th>
@@ -225,7 +218,6 @@ export default function CategoryAdminPage() {
                       {filteredCategories.map((category, index) => (
                         <tr key={category.id}>
                           <td>{index + 1}</td>
-                          <td>{category.code}</td>
                           <td>{category.name}</td>
                           <td>
                             <span className={`status-badge ${category.isActive ? 'active' : 'inactive'}`}>
@@ -240,7 +232,6 @@ export default function CategoryAdminPage() {
                             >
                               <i className="bx bx-edit-alt"></i>
                             </button>
-                          
                           </td>
                         </tr>
                       ))}
@@ -248,7 +239,6 @@ export default function CategoryAdminPage() {
                   </table>
                 </div>
               )}
-              {/* TODO: Pagination component here if needed */}
             </div>
           </div>
         </main>

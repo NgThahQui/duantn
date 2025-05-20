@@ -17,16 +17,26 @@ export async function GET(request: NextRequest, { params }: { params: { id: stri
 
 //Method: PUT
 //http://localhost:3000/api/category/id danh muc muon sua
-export async function PUT(request: NextRequest, { params }: { params: { id: string } }) {
-  await dbConnect();
-  const { id } = params;
-  const data = await request.json();
-  
-  const category = await Category.findByIdAndUpdate(id, data, { new: true });
 
-  return category
-    ? NextResponse.json(category)
-    : NextResponse.json({ message: "Không tìm thấy danh mục" }, { status: 404 });
+export async function PUT(request: NextRequest, context: { params: { id: string } }) {
+  await dbConnect();
+  const id = context.params.id;
+
+  try {
+    const data = await request.json();
+
+    const category = await Category.findByIdAndUpdate(id, data, { new: true });
+
+    if (!category) {
+      return NextResponse.json({ message: 'Không tìm thấy danh mục' }, { status: 404 });
+    }
+
+    return NextResponse.json(category, { status: 200 });
+  } catch (error) {
+    console.error('Lỗi cập nhật danh mục:', error);
+    return NextResponse.json({ message: 'Đã xảy ra lỗi server' }, { status: 500 });
+  }
 }
+
 
   
