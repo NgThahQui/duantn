@@ -5,7 +5,11 @@ import "./css/categoryAdmin.css";
 import "./css/productAdmin.css";
 import "./css/dashboard.css";
 import "./css/nav.css";
-
+import "./css/userAdmin.css";
+import "./css/feedbackAdmin.css";
+import "./css/voucherAdmin.css";
+import "./css/blogAdmin.css";
+import {ToastContainer } from 'react-toastify';
 const geistSans = Geist({
   variable: "--font-geist-sans",
   subsets: ["latin"],
@@ -38,6 +42,17 @@ export default function RootLayout({
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
         {children}
+        <ToastContainer
+            position="top-center"
+            autoClose={2000}
+            hideProgressBar={false}
+            newestOnTop={false}
+            closeOnClick
+            pauseOnFocusLoss
+            draggable
+            pauseOnHover
+            theme="colored"
+          />
       </body>
     </html>
   );

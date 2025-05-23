@@ -1,7 +1,9 @@
 import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
-  /* config options here */
+  images: {
+    domains: ['via.placeholder.com', 'example.com'], // Thêm các domain bạn cần cho phép
+  },
 };
 
 export default nextConfig;

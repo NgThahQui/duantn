@@ -54,7 +54,7 @@ export default function AdminNavPage() {
     return () => window.removeEventListener('click', handleClickOutside);
   }, []);
   
-  const menuItems = ['Dashboard', 'Category', 'Product', 'User', 'Message', 'Team'];
+  const menuItems = ['Dashboard', 'Category', 'Product', 'User', 'Feedback', 'Voucher', 'Blog', 'Stock'];
   
   return (
     <div className="admin-layout">
@@ -69,10 +69,13 @@ export default function AdminNavPage() {
               <Link href={`/admin/${item.toLowerCase()}`} onClick={() => setActiveMenu(item)}>
                 <i className={`bx bx-sm ${
                   item === 'Dashboard' ? 'bxs-dashboard' :
-                  item === 'Category' ? 'bxs-category-alt' :
+                  item === 'Category' ? 'bxs-category' :
                   item === 'Product' ? 'bxs-shopping-bag-alt' :
-                  item === 'Analytics' ? 'bxs-doughnut-chart' :
-                  item === 'Message' ? 'bxs-message-dots' :
+                  item === 'User' ? 'bxs-user' :
+                  item === 'Feedback' ? 'bxs-comment-detail' :
+                  item === 'Voucher' ? 'bxs-gift' :
+                  item === 'Blog' ? 'bxs-book-content' :
+                  item === 'Stock' ? 'bxs-store-alt' :
                   'bxs-group'
                 }`} />
                 <span className="text">{item}</span>

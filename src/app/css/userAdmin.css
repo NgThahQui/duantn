@@ -1,0 +1,401 @@
+/* ==== Reset Cơ bản & Font ==== */
+:root {
+    --primary-color: #007bff;
+    --success-color: #28a745;
+    --warning-color: #ffc107;
+    --danger-color: #dc3545;
+    --light-color: #f8f9fa;
+    --dark-color: #343a40;
+    --text-color: #2f2f2f;
+    --border-color: #dee2e6;
+    --card-bg: #ffffff;
+    --card-shadow: 0 6px 18px rgba(0, 0, 0, 0.06);
+    --card-hover-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
+    --border-radius: 8px;
+  }
+  
+  body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; /* Giữ font bạn đã chọn */
+    background-color: #f4f6f9; /* Nền tổng thể nhẹ nhàng */
+    color: var(--text-color);
+    line-height: 1.6;
+  }
+  
+  /* ==== Bố cục tổng thể và Head Title ==== */
+  #content main {
+    padding: 24px;
+  }
+  
+  .head-title {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    margin-bottom: 24px;
+    gap: 16px;
+  }
+  
+  .head-title .left h1 {
+    font-size: 28px;
+    font-weight: 600;
+    margin-bottom: 8px;
+    color: var(--dark-color);
+  }
+  
+ 
+  
+  /* ==== Filter ==== */
+  .right {
+    display: flex;
+    align-items: center;
+  }
+  
+  .filter-icon-wrapper {
+    position: relative;
+    display: inline-block;
+  }
+  
+  .filter-icon-wrapper i.bx-filter {
+    position: absolute;
+    top: 50%;
+    left: 12px;
+    transform: translateY(-50%);
+    font-size: 18px;
+    color: #555;
+    pointer-events: none; /* Để click xuyên qua icon */
+  }
+  
+  .filter-select-icon {
+    padding: 10px 12px 10px 38px; /* Tăng padding trái cho icon */
+    border-radius: var(--border-radius);
+    border: 1px solid var(--border-color);
+    font-size: 14px;
+    background-color: var(--card-bg);
+    appearance: none; /* Tắt giao diện mặc định */
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    min-width: 200px;
+    cursor: pointer;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' fill='%236c757d' viewBox='0 0 16 16'%3E%3Cpath fill-rule='evenodd' d='M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 12px center;
+  }
+  .filter-select-icon:focus {
+    border-color: var(--primary-color);
+    box-shadow: 0 0 0 3px rgba(0, 123, 255, 0.2);
+    outline: none;
+  }
+
+ /* FORM THÊM DANH MUC */
+ .category-form-card {
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 16px;
+    box-shadow: 0 0 8px rgba(0, 0, 0, 0.04);
+    margin-bottom: 30px;
+    max-width: 500px;
+  }
+  
+  .category-form-card h2 {
+    font-size: 18px;
+    font-weight: 600;
+    margin-bottom: 20px;
+  }
+  
+  .form-group {
+    margin-bottom: 16px;
+  }
+  
+  .form-group label {
+    display: block;
+    font-weight: 500;
+    margin-bottom: 6px;
+    color: #333;
+  }
+  
+  .form-group input,
+  .form-group select {
+    width: 100%;
+    padding: 10px 12px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    font-size: 14px;
+    transition: border 0.3s;
+  }
+  
+  .form-group input:focus,
+  .form-group select:focus {
+  
+    outline: none;
+  }
+  
+  .switch-wrapper {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+  }
+  
+  .switch-control {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  
+  .switch-label {
+    font-weight: 500;
+  }
+  
+  .switch {
+    position: relative;
+    display: inline-block;
+    width: 42px;
+    height: 22px;
+  }
+  
+  .switch input {
+    opacity: 0;
+    width: 0;
+    height: 0;
+  }
+  
+  .slider {
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #ccc;
+    transition: 0.4s;
+    border-radius: 22px;
+  }
+  
+  .slider:before {
+    position: absolute;
+    content: "";
+    height: 16px;
+    width: 16px;
+    left: 4px;
+    bottom: 3px;
+    background-color: white;
+    transition: 0.4s;
+    border-radius: 50%;
+  }
+  
+  .switch input:checked + .slider {
+    background-color: #4ade80;
+  }
+  
+  .switch input:checked + .slider:before {
+    transform: translateX(18px);
+  }
+  
+  .status-label {
+    font-size: 14px;
+    font-weight: 500;
+    color: #444;
+  }
+  
+  .button-group {
+    display: flex;
+    gap: 10px;
+    margin-top: 20px;
+  }
+  
+  .btn.icon-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 8px 16px;
+    border: none;
+    border-radius: 8px;
+    font-size: 14px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: background-color 0.3s;
+  }
+  
+
+  /* FORM DANH MUC */
+  .user-table-card {
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 16px;
+    box-shadow: 0 0 8px rgba(0, 0, 0, 0.04);
+    margin-bottom: 30px;
+  }
+  
+  .user-table-card h2 {
+    font-size: 18px;
+    font-weight: 600;
+    margin-bottom: 20px;
+  }
+  
+  .table-responsive {
+    overflow-x: auto;
+  }
+  
+  .category-table {
+    width: 100%;
+    border-collapse: collapse;
+  }
+  
+  .category-table th,
+  .category-table td {
+    padding: 12px 16px;
+    text-align: left;
+    border-bottom: 1px solid #eee;
+  }
+  
+  .category-table th {
+    background-color: #f9f9f9;
+    font-weight: 600;
+    font-size: 14px;
+    color: #333;
+  }
+  
+  .category-table td {
+    font-size: 14px;
+    color: #444;
+  }
+  
+  .status-badge {
+    padding: 4px 8px;
+    border-radius: 12px;
+    font-size: 12px;
+    font-weight: 500;
+    display: inline-block;
+  }
+  
+  .status-badge.active {
+    background-color: #d1fae5;
+    color: #10b981;
+  }
+  
+  .status-badge.inactive {
+    background-color: #fee2e2;
+    color: #ef4444;
+  }
+  
+  .role-badge {
+    padding: 4px 8px;
+    border-radius: 12px;
+    font-size: 12px;
+    font-weight: 500;
+    display: inline-block;
+  }
+  
+  .admin-role {
+    background-color: #ffe0b2;
+    color: #bf360c;
+  }
+  
+  .user-role {
+    background-color: #e1f5fe;
+    color: #0277bd;
+  }
+  
+
+  
+  
+  
+  
+  .icon-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #facc15;
+    color: #000;
+    border: none;
+    padding: 6px 10px;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background 0.3s;
+  }
+  
+  .icon-btn:hover {
+    background-color: #eab308;
+  }
+  
+  .empty-state {
+    text-align: center;
+    padding: 30px;
+    color: #666;
+    font-size: 14px;
+  }
+  
+  .empty-state i {
+    font-size: 24px;
+    margin-bottom: 10px;
+  }
+  
+ 
+  
+  /* Nút chính (thêm/lưu) - màu xanh */
+.icon-btn.primary-btn {
+    background-color: #10b981; /* Xanh */
+    color: white;
+  }
+  .icon-btn.primary-btn:hover {
+    background-color: #059669;
+  }
+  
+  /* Nút phụ (hủy) - xám */
+  .icon-btn.secondary-btn {
+    background-color: #e5e7eb; /* Xám nhạt */
+    color: #111827;
+  }
+  .icon-btn.secondary-btn:hover {
+    background-color: #d1d5db;
+  }
+  
+  /* Nút sửa - giữ màu vàng */
+  .icon-btn.edit-btn {
+    background-color: #facc15;
+    color: #000;
+  }
+  .icon-btn.edit-btn:hover {
+    background-color: #eab308;
+  }
+  
+  .user-admin-wrapper {
+    display: flex;
+    gap: 20px;
+    align-items: flex-start;
+    flex-wrap: wrap;
+  }
+  
+/* ==== Card chung cho Form và Table ==== */
+.user-form-card,
+.user-table-card {
+  background: var(--card-bg);
+  padding: 24px;
+  border-radius: var(--border-radius);
+  box-shadow: var(--card-shadow);
+  transition: box-shadow 0.3s ease;
+}
+
+.user-form-card:hover,
+.user-table-card:hover {
+  box-shadow: var(--card-hover-shadow);
+}
+
+.user-form-card {
+  flex: 1;
+  min-width: 320px; /* Tăng min-width */
+  max-width: 450px; /* Thêm max-width để form không quá rộng */
+}
+
+.user-table-card {
+  flex: 2;
+  min-width: 400px;
+  overflow-x: auto; /* Cho phép cuộn ngang nếu bảng quá rộng */
+}
+
+.user-form-card h2,
+.user-table-card h2 {
+  font-size: 20px;
+  font-weight: 600;
+  margin-bottom: 20px;
+  color: var(--dark-color);
+}

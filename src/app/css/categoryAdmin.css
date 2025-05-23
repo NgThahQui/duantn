@@ -42,35 +42,6 @@ body {
   color: var(--dark-color);
 }
 
-.breadcrumb {
-  display: flex;
-  align-items: center;
-  list-style: none;
-  padding: 0;
-  margin: 0;
-  font-size: 14px;
-}
-
-.breadcrumb li a {
-  color: var(--primary-color);
-  text-decoration: none;
-  transition: color 0.2s ease;
-}
-.breadcrumb li a:hover {
-  color: darken(var(--primary-color), 10%);
-}
-.breadcrumb li a.active {
-  color: var(--text-color);
-  font-weight: 500;
-  pointer-events: none;
-}
-
-.breadcrumb li .bx {
-  font-size: 18px;
-  margin: 0 8px;
-  color: #6c757d;
-}
-
 /* ==== Filter ==== */
 .right {
   display: flex;
@@ -159,6 +130,7 @@ body {
 }
 
 /* ==== FORM NHẬP ==== */
+
 .form-group {
   display: flex;
   flex-direction: column;
@@ -171,6 +143,7 @@ body {
   color: #495057; /* Màu label dịu hơn */
   font-size: 14px;
 }
+
 
 .form-group input[type="text"],
 .form-group input[type="checkbox"] {
@@ -190,6 +163,7 @@ body {
   background-color: #e9ecef;
   cursor: not-allowed;
 }
+
 
 
 /* Switch trạng thái */
