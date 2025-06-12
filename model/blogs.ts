@@ -1,4 +1,4 @@
-import mongoose from "mongoose";
+import mongoose from 'mongoose';
 
 const blogSchema = new mongoose.Schema({
   title: { type: String, required: true },
@@ -7,12 +7,12 @@ const blogSchema = new mongoose.Schema({
   image: { type: String },
   id_user: {
     type: mongoose.Schema.Types.ObjectId,
-    ref: "User",
+    ref: 'User',
     required: true,
   },
   created_at: { type: Date, default: Date.now },
   updated_at: { type: Date, default: Date.now },
-  isHidden: { type: Boolean, default: false },  //ẩn hiện 
+  isHidden: { type: Boolean, default: false },
 });
 
-export default mongoose.models.Blog || mongoose.model("Blog", blogSchema);
+export default mongoose.models.Blog || mongoose.model('Blog', blogSchema);

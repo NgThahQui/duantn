@@ -9,31 +9,26 @@
     "lint": "next lint"
   },
   "dependencies": {
-<<<<<<< HEAD
-    "date-fns": "^4.1.0",
-=======
     "bcryptjs": "^3.0.2",
+    "date-fns": "^4.1.0",
     "firebase": "^11.8.1",
     "firebase-admin": "^13.4.0",
+    "formidable": "^3.5.4",
     "jsonwebtoken": "^9.0.2",
->>>>>>> 8a4e5c5 (Thêm API blog và user)
     "mongoose": "^8.13.2",
     "next": "15.3.1",
     "nodemailer": "^7.0.3",
     "otp-generator": "^4.0.1",
     "react": "^19.0.0",
-<<<<<<< HEAD
     "react-datepicker": "^8.3.0",
     "react-dom": "^19.0.0",
-    "react-toastify": "^11.0.5"
-=======
-    "react-dom": "^19.0.0",
+    "react-toastify": "^11.0.5",
     "twilio": "^5.6.1"
->>>>>>> 8a4e5c5 (Thêm API blog và user)
   },
   "devDependencies": {
     "@eslint/eslintrc": "^3",
     "@tailwindcss/postcss": "^4",
+    "@types/formidable": "^3.4.5",
     "@types/jsonwebtoken": "^9.0.9",
     "@types/node": "^20",
     "@types/nodemailer": "^6.4.17",

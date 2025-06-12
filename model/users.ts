@@ -1,7 +1,7 @@
 import mongoose from "mongoose";
 
 const UserSchema = new mongoose.Schema({
-  username: { type: String, unique: true },                   // tên tài khoản
+  username: { type: String, unique: true, required: true },  
   password: { type: String },                                 // mật khẩu đã mã hóa
   phone: { type: String, required: true, unique: true },      // số điện thoại
   role: { type: String, enum: ['user', 'admin'], default: 'user' }, // phân quyền
